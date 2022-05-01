@@ -31,13 +31,18 @@ Does the slide have content.
 
 ## A title 
 
+```{r, comment="", results="asis"}
+old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks)
+options(crayon.enabled=TRUE)
+```
+
 ```{r}
-#| fig-height: 2
 library(corrr)
 library(magrittr)
 library(kableExtra)
 correlate(mtcars) %>% 
   # knitr::kable()
-  kbl() %>% 
-  kable_styling(font_size = 15)
+  # kbl() %>% 
+  # kable_styling(font_size = 15)
+  {.}
 ```
