@@ -1,0 +1,43 @@
+---
+title: "Advanced data exploration with corrr"
+author: James Laird-Smith
+format:
+  revealjs: 
+    slide-number: true
+    css: styles.css
+    slide-level: 0
+    mouse-wheel: true
+---
+
+## Hello, There
+
+This presentation will show you examples of what you can do with Quarto and [Reveal.js](https://revealjs.com), including:
+
+-   Presenting code and LaTeX equations
+-   Including computations in slide output
+-   Image, video, and iframe backgrounds
+-   Fancy transitions and animations
+-   Printing to PDF
+
+...and much more
+
+---
+
+## This is another slide.
+
+Does the slide have content.
+
+---
+
+## A title 
+
+```{r}
+#| fig-height: 2
+library(corrr)
+library(magrittr)
+library(kableExtra)
+correlate(mtcars) %>% 
+  # knitr::kable()
+  kbl() %>% 
+  kable_styling(font_size = 15)
+```
