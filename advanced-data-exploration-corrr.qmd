@@ -9,6 +9,7 @@ format:
     mouse-wheel: true
     execute:
       echo: true
+    output-file: index.html
 ---
 
 ## Hello, There
