@@ -1,38 +1,35 @@
 ---
-title: "Advanced data exploration with corrr"
-author: James Laird-Smith
 format:
   revealjs: 
     slide-number: true
     css: styles.css
-    slide-level: 0
+    slide-level: 2
     mouse-wheel: true
     execute:
       echo: true
+      warning: false
     output-file: index.html
 ---
+## Advanced data exploration with corrr {style="margin-top: 2.9em;"}
 
-## Hello, There
+> James Laird-Smith
 
-This presentation will show you examples of what you can do with Quarto and [Reveal.js](https://revealjs.com), including:
+```{r}
+#| include: false
+old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks)
+options(crayon.enabled=TRUE)
+```
 
--   Presenting code and LaTeX equations
--   Including computations in slide output
--   Image, video, and iframe backgrounds
--   Fancy transitions and animations
--   Printing to PDF
+Link to slides: data-exploration-corrr.jameslairdsmith.com/
 
-...and much more
-
----
-
-## This is another slide.
-
-Does the slide have content.
+```{r}
+library(corrr)
+library(magrittr)
+```
 
 ---
 
-### In the beginning ... there was `stats::cor()`
+In the beginning ... there was `stats::cor()`
 
 ```{r}
 cor(mtcars)
@@ -41,20 +38,9 @@ cor(mtcars)
 
 ---
 
-## A title 
+## Using `corrr::correlate()`
 
-```{r, comment="", results="asis"}
-old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks)
-options(crayon.enabled=TRUE)
-```
 
 ```{r}
-library(corrr)
-library(magrittr)
-library(kableExtra)
-correlate(mtcars) %>% 
-  # knitr::kable()
-  # kbl() %>% 
-  # kable_styling(font_size = 15)
-  {.}
+correlate(mtcars[1:4]) 
 ```

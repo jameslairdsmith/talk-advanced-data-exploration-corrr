@@ -3,8 +3,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.9.339">
 
-  <meta name="author" content="James Laird-Smith">
-  <title>Advanced data exploration with corrr</title>
+  <title>advanced-data-exploration-corrr</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -383,34 +382,23 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
-  <h1 class="title">Advanced data exploration with corrr</h1>
-  <p class="author">James Laird-Smith</p>
-</section>
 
-<section class="slide level0">
-
-<h2>Hello, There</h2>
-<p>This presentation will show you examples of what you can do with Quarto and <a href="https://revealjs.com">Reveal.js</a>, including:</p>
-<ul>
-<li>Presenting code and LaTeX equations</li>
-<li>Including computations in slide output</li>
-<li>Image, video, and iframe backgrounds</li>
-<li>Fancy transitions and animations</li>
-<li>Printing to PDF</li>
-</ul>
-<p>…and much more</p>
-</section>
-<section class="slide level0">
-
-<h2>This is another slide.</h2>
-<p>Does the slide have content.</p>
-</section>
-<section class="slide level0">
-
-<h3 id="in-the-beginning-there-was-statscor">In the beginning … there was <code>stats::cor()</code></h3>
+<section id="advanced-data-exploration-with-corrr" class="slide level2" style="margin-top: 2.9em;">
+<h2>Advanced data exploration with corrr</h2>
+<blockquote>
+<p>James Laird-Smith</p>
+</blockquote>
+<p>Link to slides: data-exploration-corrr.jameslairdsmith.com/</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">cor</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>In the beginning … there was <code>stats::cor()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">cor</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            mpg        cyl       disp         hp        drat         wt
 mpg   1.0000000 -0.8521620 -0.8475514 -0.7761684  0.68117191 -0.8676594
@@ -439,38 +427,17 @@ carb -0.65624923 -0.5696071  0.05753435  0.2740728  1.00000000</code></pre>
 </div>
 </div>
 </section>
-<section class="slide level0">
-
-<h2>A title</h2>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>old.hooks <span class="ot">&lt;-</span> fansi<span class="sc">::</span><span class="fu">set_knit_hooks</span>(knitr<span class="sc">::</span>knit_hooks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<style type="text/css" scoped="">
-PRE.fansi SPAN {padding-top: .25em; padding-bottom: .25em};
-</style>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">options</span>(<span class="at">crayon.enabled=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="using-corrrcorrelate" class="slide level2">
+<h2>Using <code>corrr::correlate()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(corrr)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">correlate</span>(mtcars) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="co"># knitr::kable()</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="co"># kbl() %&gt;% </span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="co"># kable_styling(font_size = 15)</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>  {.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="fansi fansi-output"><code><span style="color: #555555;"># A tibble: 11 × 12</span>
-   term     mpg    cyl   disp     hp    drat     wt    qsec     vs      am
-   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #555555;"> 1</span> mpg   <span style="color: #BB0000;">NA</span>     -<span style="color: #BB0000;">0.852</span> -<span style="color: #BB0000;">0.848</span> -<span style="color: #BB0000;">0.776</span>  0.681  -<span style="color: #BB0000;">0.868</span>  0.419   0.664  0.600 
-<span style="color: #555555;"> 2</span> cyl   -<span style="color: #BB0000;">0.852</span> <span style="color: #BB0000;">NA</span>      0.902  0.832 -<span style="color: #BB0000;">0.700</span>   0.782 -<span style="color: #BB0000;">0.591</span>  -<span style="color: #BB0000;">0.811</span> -<span style="color: #BB0000;">0.523</span> 
-<span style="color: #555555;"> 3</span> disp  -<span style="color: #BB0000;">0.848</span>  0.902 <span style="color: #BB0000;">NA</span>      0.791 -<span style="color: #BB0000;">0.710</span>   0.888 -<span style="color: #BB0000;">0.434</span>  -<span style="color: #BB0000;">0.710</span> -<span style="color: #BB0000;">0.591</span> 
-<span style="color: #555555;"> 4</span> hp    -<span style="color: #BB0000;">0.776</span>  0.832  0.791 <span style="color: #BB0000;">NA</span>     -<span style="color: #BB0000;">0.449</span>   0.659 -<span style="color: #BB0000;">0.708</span>  -<span style="color: #BB0000;">0.723</span> -<span style="color: #BB0000;">0.243</span> 
-<span style="color: #555555;"> 5</span> drat   0.681 -<span style="color: #BB0000;">0.700</span> -<span style="color: #BB0000;">0.710</span> -<span style="color: #BB0000;">0.449</span> <span style="color: #BB0000;">NA</span>      -<span style="color: #BB0000;">0.712</span>  0.091<span style="text-decoration: underline;">2</span>  0.440  0.713 
-<span style="color: #555555;"> 6</span> wt    -<span style="color: #BB0000;">0.868</span>  0.782  0.888  0.659 -<span style="color: #BB0000;">0.712</span>  <span style="color: #BB0000;">NA</span>     -<span style="color: #BB0000;">0.175</span>  -<span style="color: #BB0000;">0.555</span> -<span style="color: #BB0000;">0.692</span> 
-<span style="color: #555555;"> 7</span> qsec   0.419 -<span style="color: #BB0000;">0.591</span> -<span style="color: #BB0000;">0.434</span> -<span style="color: #BB0000;">0.708</span>  0.091<span style="text-decoration: underline;">2</span> -<span style="color: #BB0000;">0.175</span> <span style="color: #BB0000;">NA</span>       0.745 -<span style="color: #BB0000;">0.230</span> 
-<span style="color: #555555;"> 8</span> vs     0.664 -<span style="color: #BB0000;">0.811</span> -<span style="color: #BB0000;">0.710</span> -<span style="color: #BB0000;">0.723</span>  0.440  -<span style="color: #BB0000;">0.555</span>  0.745  <span style="color: #BB0000;">NA</span>      0.168 
-<span style="color: #555555;"> 9</span> am     0.600 -<span style="color: #BB0000;">0.523</span> -<span style="color: #BB0000;">0.591</span> -<span style="color: #BB0000;">0.243</span>  0.713  -<span style="color: #BB0000;">0.692</span> -<span style="color: #BB0000;">0.230</span>   0.168 <span style="color: #BB0000;">NA</span>     
-<span style="color: #555555;">10</span> gear   0.480 -<span style="color: #BB0000;">0.493</span> -<span style="color: #BB0000;">0.556</span> -<span style="color: #BB0000;">0.126</span>  0.700  -<span style="color: #BB0000;">0.583</span> -<span style="color: #BB0000;">0.213</span>   0.206  0.794 
-<span style="color: #555555;">11</span> carb  -<span style="color: #BB0000;">0.551</span>  0.527  0.395  0.750 -<span style="color: #BB0000;">0.090</span><span style="color: #BB0000; text-decoration: underline;">8</span>  0.428 -<span style="color: #BB0000;">0.656</span>  -<span style="color: #BB0000;">0.570</span>  0.057<span style="text-decoration: underline;">5</span>
-<span style="color: #555555;"># … with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">correlate</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="fansi fansi-output"><code><span style="color: #555555;"># A tibble: 4 × 5</span>
+  term     mpg    cyl   disp     hp
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #555555;">1</span> mpg   <span style="color: #BB0000;">NA</span>     -<span style="color: #BB0000;">0.852</span> -<span style="color: #BB0000;">0.848</span> -<span style="color: #BB0000;">0.776</span>
+<span style="color: #555555;">2</span> cyl   -<span style="color: #BB0000;">0.852</span> <span style="color: #BB0000;">NA</span>      0.902  0.832
+<span style="color: #555555;">3</span> disp  -<span style="color: #BB0000;">0.848</span>  0.902 <span style="color: #BB0000;">NA</span>      0.791
+<span style="color: #555555;">4</span> hp    -<span style="color: #BB0000;">0.776</span>  0.832  0.791 <span style="color: #BB0000;">NA</span>    
 </code></pre>
 </div>
 <div class="footer footer-default">
