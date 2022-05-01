@@ -7,6 +7,8 @@ format:
     css: styles.css
     slide-level: 0
     mouse-wheel: true
+    execute:
+      echo: true
 ---
 
 ## Hello, There
@@ -26,6 +28,15 @@ This presentation will show you examples of what you can do with Quarto and [Rev
 ## This is another slide.
 
 Does the slide have content.
+
+---
+
+### In the beginning ... there was `stats::cor()`
+
+```{r}
+cor(mtcars)
+```
+
 
 ---
 
