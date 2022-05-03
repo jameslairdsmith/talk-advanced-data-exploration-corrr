@@ -35,6 +35,9 @@ In the beginning ... there was `stats::cor()`
 cor(mtcars[1:4])
 ```
 
+---
+
+But `stats::cor()` returns a matrix, which isn't as easy to work with.
 
 ---
 
@@ -44,3 +47,37 @@ cor(mtcars[1:4])
 ```{r}
 correlate(mtcars[1:4]) 
 ```
+
+---
+
+But this is still limited.
+
+- Trivially, it only works with correlations.
+  - This means it's confined to only numeric-numeric comparisons.
+  - Even for numeric-numeric pairs, correlations can only detect linear relationships.
+  - Correlations aren't the only useful measure of association.
+  
+---
+
+## Enter: `corrr::colpair_map()`
+
+- A function I contributed to corrr.
+- Just like `corrr::correlate()`, it takes data as the first argument and then an arbitrary function (`.f`) as the second argument.
+
+```{r}
+#| eval: false
+colpair_map(.data, .f, ..., .diagonal = NA)
+```
+
+- The name is a combination of `colpair`, meaning column pairs and `map`, which is like "apply".
+
+- Now you can run any function you like.
+
+---
+
+To get a covariance matrix:
+
+```{r}
+colpair_map(mtcars, stats::cov)
+```
+

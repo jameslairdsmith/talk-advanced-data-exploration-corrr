@@ -408,6 +408,10 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 </div>
 </div>
 </section>
+<section class="slide level2">
+
+<p>But <code>stats::cor()</code> returns a matrix, which isn’t as easy to work with.</p>
+</section>
 <section id="using-corrrcorrelate" class="slide level2">
 <h2>Using <code>corrr::correlate()</code></h2>
 <div class="cell">
@@ -419,6 +423,55 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 <span style="color: #555555;">2</span> cyl   -<span style="color: #BB0000;">0.852</span> <span style="color: #BB0000;">NA</span>      0.902  0.832
 <span style="color: #555555;">3</span> disp  -<span style="color: #BB0000;">0.848</span>  0.902 <span style="color: #BB0000;">NA</span>      0.791
 <span style="color: #555555;">4</span> hp    -<span style="color: #BB0000;">0.776</span>  0.832  0.791 <span style="color: #BB0000;">NA</span>    
+</code></pre>
+</div>
+</section>
+<section class="slide level2">
+
+<p>But this is still limited.</p>
+<ul>
+<li>Trivially, it only works with correlations.
+<ul>
+<li>This means it’s confined to only numeric-numeric comparisons.</li>
+<li>Even for numeric-numeric pairs, correlations can only detect linear relationships.</li>
+<li>Correlations aren’t the only useful measure of association.</li>
+</ul></li>
+</ul>
+</section>
+<section id="enter-corrrcolpair_map" class="slide level2">
+<h2>Enter: <code>corrr::colpair_map()</code></h2>
+<ul>
+<li>A function I contributed to corrr.</li>
+<li>Just like <code>corrr::correlate()</code>, it takes data as the first argument and then an arbitrary function (<code>.f</code>) as the second argument.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">colpair_map</span>(.data, .f, ..., <span class="at">.diagonal =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>The name is a combination of <code>colpair</code>, meaning column pairs and <code>map</code>, which is like “apply”.</p></li>
+<li><p>Now you can run any function you like.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>To get a covariance matrix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">colpair_map</span>(mtcars, stats<span class="sc">::</span>cov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="fansi fansi-output"><code><span style="color: #555555;"># A tibble: 11 × 12</span>
+   term      mpg     cyl   disp      hp     drat      wt     qsec       vs
+   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #555555;"> 1</span> mpg     <span style="color: #BB0000;">NA</span>     -<span style="color: #BB0000;">9.17</span>  -<span style="color: #BB0000;">633.</span>  -<span style="color: #BB0000;">321.</span>     2.20    -<span style="color: #BB0000;">5.12</span>    4.51     2.02  
+<span style="color: #555555;"> 2</span> cyl     -<span style="color: #BB0000;">9.17</span>  <span style="color: #BB0000;">NA</span>      200.   102.    -<span style="color: #BB0000;">0.668</span>    1.37   -<span style="color: #BB0000;">1.89</span>    -<span style="color: #BB0000;">0.730</span> 
+<span style="color: #555555;"> 3</span> disp  -<span style="color: #BB0000;">633.</span>   200.      <span style="color: #BB0000;">NA</span>   <span style="text-decoration: underline;">6</span>721.   -<span style="color: #BB0000;">47.1</span>    108.    -<span style="color: #BB0000;">96.1</span>    -<span style="color: #BB0000;">44.4</span>   
+<span style="color: #555555;"> 4</span> hp    -<span style="color: #BB0000;">321.</span>   102.    <span style="text-decoration: underline;">6</span>721.    <span style="color: #BB0000;">NA</span>    -<span style="color: #BB0000;">16.5</span>     44.2   -<span style="color: #BB0000;">86.8</span>    -<span style="color: #BB0000;">25.0</span>   
+<span style="color: #555555;"> 5</span> drat     2.20  -<span style="color: #BB0000;">0.668</span>  -<span style="color: #BB0000;">47.1</span>  -<span style="color: #BB0000;">16.5</span>   <span style="color: #BB0000;">NA</span>       -<span style="color: #BB0000;">0.373</span>   0.087<span style="text-decoration: underline;">1</span>   0.119 
+<span style="color: #555555;"> 6</span> wt      -<span style="color: #BB0000;">5.12</span>   1.37   108.    44.2   -<span style="color: #BB0000;">0.373</span>   <span style="color: #BB0000;">NA</span>      -<span style="color: #BB0000;">0.305</span>   -<span style="color: #BB0000;">0.274</span> 
+<span style="color: #555555;"> 7</span> qsec     4.51  -<span style="color: #BB0000;">1.89</span>   -<span style="color: #BB0000;">96.1</span>  -<span style="color: #BB0000;">86.8</span>    0.087<span style="text-decoration: underline;">1</span>  -<span style="color: #BB0000;">0.305</span>  <span style="color: #BB0000;">NA</span>        0.671 
+<span style="color: #555555;"> 8</span> vs       2.02  -<span style="color: #BB0000;">0.730</span>  -<span style="color: #BB0000;">44.4</span>  -<span style="color: #BB0000;">25.0</span>    0.119   -<span style="color: #BB0000;">0.274</span>   0.671   <span style="color: #BB0000;">NA</span>     
+<span style="color: #555555;"> 9</span> am       1.80  -<span style="color: #BB0000;">0.466</span>  -<span style="color: #BB0000;">36.6</span>   -<span style="color: #BB0000;">8.32</span>   0.190   -<span style="color: #BB0000;">0.338</span>  -<span style="color: #BB0000;">0.205</span>    0.042<span style="text-decoration: underline;">3</span>
+<span style="color: #555555;">10</span> gear     2.14  -<span style="color: #BB0000;">0.649</span>  -<span style="color: #BB0000;">50.8</span>   -<span style="color: #BB0000;">6.36</span>   0.276   -<span style="color: #BB0000;">0.421</span>  -<span style="color: #BB0000;">0.280</span>    0.076<span style="text-decoration: underline;">6</span>
+<span style="color: #555555;">11</span> carb    -<span style="color: #BB0000;">5.36</span>   1.52    79.1   83.0   -<span style="color: #BB0000;">0.078</span><span style="color: #BB0000; text-decoration: underline;">4</span>   0.676  -<span style="color: #BB0000;">1.89</span>    -<span style="color: #BB0000;">0.464</span> 
+<span style="color: #555555;"># … with 3 more variables: am &lt;dbl&gt;, gear &lt;dbl&gt;, carb &lt;dbl&gt;</span>
 </code></pre>
 </div>
 <div class="footer footer-default">
