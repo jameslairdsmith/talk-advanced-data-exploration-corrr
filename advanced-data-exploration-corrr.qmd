@@ -29,6 +29,15 @@ library(magrittr)
 
 ---
 
+## Agenda
+
+- Old and busted: `stats::cor()`
+- New hotness: `corrr::correlate()`
+- More general hotness: `corrr::colpair_map()`
+- Experiments: `ppcalc::`
+
+---
+
 In the beginning ... there was `stats::cor()`
 
 ```{r}
@@ -41,14 +50,46 @@ But `stats::cor()` returns a matrix, which isn't as easy to work with.
 
 ---
 
-## Using `corrr::correlate()`
-
+## Using `corrr::correlate()` {auto-animate="true"}
 
 ```{r}
 correlate(mtcars[1:4]) 
 ```
 
 ---
+
+## Using `corrr::correlate()` {auto-animate="true"}
+
+
+```{r}
+correlate(mtcars[1:4]) %>%
+  network_plot()
+```
+
+---
+
+## Using `corrr::correlate()` {auto-animate="true"}
+
+```{r}
+correlate(mtcars[1:4]) %>% 
+  shave()
+```
+
+
+
+---
+
+## Using `corrr::correlate()` {auto-animate="true"}
+
+
+```{r}
+correlate(mtcars[1:4]) %>% 
+  shave() %>%
+  stretch(na.rm = T)
+```
+
+---
+
 
 But this is still limited.
 
@@ -78,6 +119,6 @@ colpair_map(.data, .f, ..., .diagonal = NA)
 To get a covariance matrix:
 
 ```{r}
-colpair_map(mtcars, stats::cov)
+colpair_map(mtcars[1:4], stats::cov)
 ```
 
