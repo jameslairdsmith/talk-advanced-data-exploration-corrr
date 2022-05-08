@@ -20,11 +20,14 @@ old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks)
 options(crayon.enabled=TRUE)
 ```
 
-Link to slides: data-exploration-corrr.jameslairdsmith.com/
+::: {style="margin-top: 2em; margin-bottom: 1em"}
+Link to slides: data-exploration-corrr.jameslairdsmith.com/ 
+:::
 
 ```{r}
 library(corrr)
 library(magrittr)
+library(dplyr)
 ```
 
 ---
@@ -38,15 +41,28 @@ library(magrittr)
 
 ---
 
+## {auto-animate="true"}
+
 In the beginning ... there was `stats::cor()`
 
 ```{r}
-cor(mtcars[1:4])
+mtcars[1:4]
 ```
 
 ---
 
+## {auto-animate="true"}
+
+In the beginning ... there was `stats::cor()`
+
+```{r}
+mtcars[1:4] %>% 
+  cor()
+```
+
+::: {style="margin-top: 2em"}
 But `stats::cor()` returns a matrix, which isn't as easy to work with.
+:::
 
 ---
 
@@ -74,8 +90,6 @@ correlate(mtcars[1:4]) %>%
 correlate(mtcars[1:4]) %>% 
   shave()
 ```
-
-
 
 ---
 
