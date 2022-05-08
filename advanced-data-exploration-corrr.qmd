@@ -40,18 +40,13 @@ library(dplyr)
 
 
 
-### {auto-animate="true"}
-
-In the beginning ... there was `stats::cor()`
+### In the beginning ... there was `stats::cor()` {auto-animate="true"}
 
 ```{r}
 mtcars[1:4]
 ```
 
-
-### {auto-animate="true"}
-
-In the beginning ... there was `stats::cor()`
+### In the beginning ... there was `stats::cor()` {auto-animate="true"}
 
 ```{r}
 mtcars[1:4] %>% 
@@ -65,6 +60,15 @@ But `stats::cor()` returns a matrix, which isn't as easy to work with.
 :::
 
 ---
+
+### Introducing corrr
+
+- A package for correlations in R.
+- Created by Simon Jackson in 2016.
+- Since been taken over by the tidymodels team at RStudio.
+- Makes working with correlation values a little easier.
+
+![](corrr-logo.png){.absolute bottom=0 right=50 width="300" height="325"}
 
 ### Using `corrr::correlate()` {auto-animate="true"}
 
@@ -91,13 +95,20 @@ correlate(mtcars[1:4]) %>%
 
 ### Using `corrr::correlate()` {auto-animate="true"}
 
-
 ```{r}
 correlate(mtcars[1:4]) %>% 
   shave() %>%
   stretch(na.rm = T)
 ```
 
+### Using `corrr::correlate()` {auto-animate="true"}
+
+```{r}
+correlate(mtcars[1:4]) %>% 
+  shave() %>%
+  stretch(na.rm = T) %>% 
+  dplyr::arrange(r)
+```
 
 ###
 
