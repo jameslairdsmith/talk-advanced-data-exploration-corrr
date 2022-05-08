@@ -3,14 +3,15 @@ format:
   revealjs: 
     slide-number: true
     css: styles.css
-    slide-level: 2
+    slide-level: 3
     mouse-wheel: true
     execute:
       echo: true
       warning: false
     output-file: index.html
 ---
-## Advanced data exploration with corrr {style="margin-top: 2.9em;"}
+
+## Advanced data exploration with corrr {style="margin-top: 0em;"}
 
 > James Laird-Smith
 
@@ -30,8 +31,6 @@ library(magrittr)
 library(dplyr)
 ```
 
----
-
 ## Agenda
 
 - Old and busted: `stats::cor()`
@@ -39,9 +38,9 @@ library(dplyr)
 - More general hotness: `corrr::colpair_map()`
 - Experiments: `ppcalc::`
 
----
 
-## {auto-animate="true"}
+
+### {auto-animate="true"}
 
 In the beginning ... there was `stats::cor()`
 
@@ -49,9 +48,8 @@ In the beginning ... there was `stats::cor()`
 mtcars[1:4]
 ```
 
----
 
-## {auto-animate="true"}
+### {auto-animate="true"}
 
 In the beginning ... there was `stats::cor()`
 
@@ -60,13 +58,15 @@ mtcars[1:4] %>%
   cor()
 ```
 
+. . .
+
 ::: {style="margin-top: 2em"}
 But `stats::cor()` returns a matrix, which isn't as easy to work with.
 :::
 
 ---
 
-## Using `corrr::correlate()` {auto-animate="true"}
+### Using `corrr::correlate()` {auto-animate="true"}
 
 ```{r}
 correlate(mtcars[1:4]) 
@@ -74,7 +74,7 @@ correlate(mtcars[1:4])
 
 ---
 
-## Using `corrr::correlate()` {auto-animate="true"}
+### Using `corrr::correlate()` {auto-animate="true"}
 
 
 ```{r}
@@ -82,18 +82,14 @@ correlate(mtcars[1:4]) %>%
   network_plot()
 ```
 
----
-
-## Using `corrr::correlate()` {auto-animate="true"}
+### Using `corrr::correlate()` {auto-animate="true"}
 
 ```{r}
 correlate(mtcars[1:4]) %>% 
   shave()
 ```
 
----
-
-## Using `corrr::correlate()` {auto-animate="true"}
+### Using `corrr::correlate()` {auto-animate="true"}
 
 
 ```{r}
@@ -102,8 +98,8 @@ correlate(mtcars[1:4]) %>%
   stretch(na.rm = T)
 ```
 
----
 
+###
 
 But this is still limited.
 
@@ -112,8 +108,7 @@ But this is still limited.
   - Even for numeric-numeric pairs, correlations can only detect linear relationships.
   - Correlations aren't the only useful measure of association.
   
----
-
+  
 ## Enter: `corrr::colpair_map()`
 
 - A function I contributed to corrr.
@@ -128,11 +123,18 @@ colpair_map(.data, .f, ..., .diagonal = NA)
 
 - Now you can run any function you like.
 
----
-
-To get a covariance matrix:
+### Application: covariance matrix {auto-animate="true"}
 
 ```{r}
-colpair_map(mtcars[1:4], stats::cov)
+mtcars[1:4] %>% 
+  colpair_map(stats::cov)
+```
+
+### Application: covariance matrix {auto-animate="true"}
+
+```{r}
+mtcars[1:4] %>% 
+  colpair_map(stats::cov) %>% 
+  shave()
 ```
 

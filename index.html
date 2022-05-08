@@ -383,7 +383,7 @@
     <div class="slides">
 
 
-<section id="advanced-data-exploration-with-corrr" class="slide level2" style="margin-top: 2.9em;">
+<section id="advanced-data-exploration-with-corrr" class="title-slide slide level2 center" style="margin-top: 0em;">
 <h2>Advanced data exploration with corrr</h2>
 <blockquote>
 <p>James Laird-Smith</p>
@@ -397,7 +397,9 @@
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="agenda" class="slide level2">
+
+<section>
+<section id="agenda" class="title-slide slide level2 center">
 <h2>Agenda</h2>
 <ul>
 <li>Old and busted: <code>stats::cor()</code></li>
@@ -406,8 +408,8 @@
 <li>Experiments: <code>ppcalc::</code></li>
 </ul>
 </section>
-<section id="section" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title"></h2>
+<section id="section" class="slide level3" data-auto-animate="true">
+<h3 data-id="quarto-animate-title"></h3>
 <p>In the beginning … there was <code>stats::cor()</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a href="#cb2-1"></a>mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -448,8 +450,8 @@ Volvo 142E          21.4   4 121.0 109</code></pre>
 </div>
 </div>
 </section>
-<section id="section-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title"></h2>
+<section id="section-1" class="slide level3" data-auto-animate="true">
+<h3 data-id="quarto-animate-title"></h3>
 <p>In the beginning … there was <code>stats::cor()</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb4-1" class="hljs-ln-code"><a href="#cb4-1"></a>mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>] <span class="sc">%&gt;%</span> </span>
@@ -462,12 +464,14 @@ disp -0.8475514  0.9020329  1.0000000  0.7909486
 hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 </div>
 </div>
+<div class="fragment">
 <div style="margin-top: 2em">
 <p>But <code>stats::cor()</code> returns a matrix, which isn’t as easy to work with.</p>
 </div>
+</div>
 </section>
-<section id="using-corrrcorrelate" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Using <code>corrr::correlate()</code></h2>
+<section id="using-corrrcorrelate" class="slide level3" data-auto-animate="true">
+<h3 data-id="quarto-animate-title">Using <code>corrr::correlate()</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb6-1" class="hljs-ln-code"><a href="#cb6-1"></a><span class="fu">correlate</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="fansi fansi-output"><code><span style="color: #555555;"># A tibble: 4 × 5</span>
@@ -480,16 +484,16 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 </code></pre>
 </div>
 </section>
-<section id="using-corrrcorrelate-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Using <code>corrr::correlate()</code></h2>
+<section id="using-corrrcorrelate-1" class="slide level3" data-auto-animate="true">
+<h3 data-id="quarto-animate-title">Using <code>corrr::correlate()</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb7-1" class="hljs-ln-code"><a href="#cb7-1"></a><span class="fu">correlate</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]) <span class="sc">%&gt;%</span></span>
 <span id="cb7-2" class="hljs-ln-code"><a href="#cb7-2"></a>  <span class="fu">network_plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="advanced-data-exploration-corrr_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
-<section id="using-corrrcorrelate-2" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Using <code>corrr::correlate()</code></h2>
+<section id="using-corrrcorrelate-2" class="slide level3" data-auto-animate="true">
+<h3 data-id="quarto-animate-title">Using <code>corrr::correlate()</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb8-1" class="hljs-ln-code"><a href="#cb8-1"></a><span class="fu">correlate</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]) <span class="sc">%&gt;%</span> </span>
 <span id="cb8-2" class="hljs-ln-code"><a href="#cb8-2"></a>  <span class="fu">shave</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -503,8 +507,8 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 </code></pre>
 </div>
 </section>
-<section id="using-corrrcorrelate-3" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Using <code>corrr::correlate()</code></h2>
+<section id="using-corrrcorrelate-3" class="slide level3" data-auto-animate="true">
+<h3 data-id="quarto-animate-title">Using <code>corrr::correlate()</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb9-1" class="hljs-ln-code"><a href="#cb9-1"></a><span class="fu">correlate</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]) <span class="sc">%&gt;%</span> </span>
 <span id="cb9-2" class="hljs-ln-code"><a href="#cb9-2"></a>  <span class="fu">shave</span>() <span class="sc">%&gt;%</span></span>
@@ -521,8 +525,8 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 </code></pre>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="section-2" class="slide level3">
+<h3></h3>
 <p>But this is still limited.</p>
 <ul>
 <li>Trivially, it only works with correlations.
@@ -532,8 +536,9 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 <li>Correlations aren’t the only useful measure of association.</li>
 </ul></li>
 </ul>
-</section>
-<section id="enter-corrrcolpair_map" class="slide level2">
+</section></section>
+<section>
+<section id="enter-corrrcolpair_map" class="title-slide slide level2 center">
 <h2>Enter: <code>corrr::colpair_map()</code></h2>
 <ul>
 <li>A function I contributed to corrr.</li>
@@ -547,11 +552,11 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 <li><p>Now you can run any function you like.</p></li>
 </ul>
 </section>
-<section class="slide level2">
-
-<p>To get a covariance matrix:</p>
+<section id="application-covariance-matrix" class="slide level3" data-auto-animate="true">
+<h3 data-id="quarto-animate-title">Application: covariance matrix</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">colpair_map</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], stats<span class="sc">::</span>cov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb11-1" class="hljs-ln-code"><a href="#cb11-1"></a>mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2" class="hljs-ln-code"><a href="#cb11-2"></a>  <span class="fu">colpair_map</span>(stats<span class="sc">::</span>cov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="fansi fansi-output"><code><span style="color: #555555;"># A tibble: 4 × 5</span>
   term      mpg    cyl  disp    hp
   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
@@ -561,10 +566,26 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 <span style="color: #555555;">4</span> hp    -<span style="color: #BB0000;">321.</span>   102.   <span style="text-decoration: underline;">6</span>721.   <span style="color: #BB0000;">NA</span> 
 </code></pre>
 </div>
+</section>
+<section id="application-covariance-matrix-1" class="slide level3" data-auto-animate="true">
+<h3 data-id="quarto-animate-title">Application: covariance matrix</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb12-1" class="hljs-ln-code"><a href="#cb12-1"></a>mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2" class="hljs-ln-code"><a href="#cb12-2"></a>  <span class="fu">colpair_map</span>(stats<span class="sc">::</span>cov) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3" class="hljs-ln-code"><a href="#cb12-3"></a>  <span class="fu">shave</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="fansi fansi-output"><code><span style="color: #555555;"># A tibble: 4 × 5</span>
+  term      mpg   cyl  disp    hp
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #555555;">1</span> mpg     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>
+<span style="color: #555555;">2</span> cyl     -<span style="color: #BB0000;">9.17</span>   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>
+<span style="color: #555555;">3</span> disp  -<span style="color: #BB0000;">633.</span>    200.   <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>
+<span style="color: #555555;">4</span> hp    -<span style="color: #BB0000;">321.</span>    102. <span style="text-decoration: underline;">6</span>721.    <span style="color: #BB0000;">NA</span>
+</code></pre>
+</div>
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
