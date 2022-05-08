@@ -552,9 +552,8 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 </code></pre>
 </div>
 </section>
-<section id="section" class="slide level3">
-<h3></h3>
-<p>But this is still limited.</p>
+<section id="limitations-of-corrrcolpair_map" class="slide level3">
+<h3>Limitations of <code>corrr::colpair_map()</code></h3>
 <ul>
 <li>Trivially, it only works with correlations.
 <ul>
@@ -563,20 +562,19 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 <li>Correlations aren’t the only useful measure of association.</li>
 </ul></li>
 </ul>
-</section></section>
-<section>
-<section id="enter-corrrcolpair_map" class="title-slide slide level2 center">
-<h2>Enter: <code>corrr::colpair_map()</code></h2>
+</section>
+<section id="enter-corrrcolpair_map" class="slide level3">
+<h3>Enter: <code>corrr::colpair_map()</code></h3>
 <ul>
-<li>A function I contributed to corrr.</li>
-<li>Just like <code>corrr::correlate()</code>, it takes data as the first argument and then an arbitrary function (<code>.f</code>) as the second argument.</li>
+<li>Just like <code>corrr::correlate()</code>, it takes data as the first argument and then an <strong>arbitrary function</strong> (<code>.f</code>) as the second argument.</li>
 </ul>
+<div style="margin-top: 0.5em; margin-bottom: 1em">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">colpair_map</span>(.data, .f, ..., <span class="at">.diagonal =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
 <ul>
-<li><p>The name is a combination of <code>colpair</code>, meaning column pairs and <code>map</code>, which is like “apply”.</p></li>
-<li><p>Now you can run any function you like.</p></li>
+<li>The name is a combination of <code>colpair</code>, meaning column pairs and <code>map</code>, which is like “apply”.</li>
 </ul>
 </section>
 <section id="application-covariance-matrix" class="slide level3" data-auto-animate="true">

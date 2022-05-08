@@ -110,9 +110,7 @@ correlate(mtcars[1:4]) %>%
   dplyr::arrange(r)
 ```
 
-###
-
-But this is still limited.
+### Limitations of `corrr::colpair_map()`
 
 - Trivially, it only works with correlations.
   - This means it's confined to only numeric-numeric comparisons.
@@ -120,19 +118,18 @@ But this is still limited.
   - Correlations aren't the only useful measure of association.
   
   
-## Enter: `corrr::colpair_map()`
+### Enter: `corrr::colpair_map()`
 
-- A function I contributed to corrr.
-- Just like `corrr::correlate()`, it takes data as the first argument and then an arbitrary function (`.f`) as the second argument.
+- Just like `corrr::correlate()`, it takes data as the first argument and then an **arbitrary function** (`.f`) as the second argument.
 
+::: {style="margin-top: 0.5em; margin-bottom: 1em"}
 ```{r}
 #| eval: false
 colpair_map(.data, .f, ..., .diagonal = NA)
 ```
+:::
 
 - The name is a combination of `colpair`, meaning column pairs and `map`, which is like "apply".
-
-- Now you can run any function you like.
 
 ### Application: covariance matrix {auto-animate="true"}
 
