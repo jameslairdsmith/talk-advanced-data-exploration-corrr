@@ -142,3 +142,48 @@ mtcars[1:4] %>%
   shave()
 ```
 
+## Experiments
+
+Now that we have arbitrary function support, what function should we use?
+
+- Ideally something that didn't have the limitations of correlation:
+  - Could handle category-numeric and category-category comparisons.
+  - Could detect non-linear relationships.
+  - Still easy to calculate.
+  
+## Experiments (2)
+
+I am not the first person to think of this:
+
+![](pp-article-medium.png)
+- Implemented in Python. Uses random forest model to determine how good one column is at predicting another.
+
+## Experiments (3)
+
+I have ported it to R as a (highly experimental) package:
+
+:::{style="font-size: 0.7em;"}
+```{r}
+#| eval: false
+# install.packages("devtools")
+devtools::install_github("jameslairdsmith/ppcalc")
+```
+:::
+
+- There is currently a single function, `ppcalc_randomforest()`
+- Values close to 1 mean one variable is very good at predicting another. Values close to 0 mean a variable is very poor at predicting another.
+
+### Experiments (4)
+
+:::{style="font-size: 0.7em;"}
+```{r}
+iris %>% 
+  colpair_map(ppcalc::ppcalc_randforest)
+```
+:::
+
+Now we can look at the categorical column "Species", which isn't possible with correlation.
+
+# Thank you! 
+
+Questions?

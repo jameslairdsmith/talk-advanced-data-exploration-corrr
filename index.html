@@ -606,10 +606,67 @@ hp   -0.7761684  0.8324475  0.7909486  1.0000000</code></pre>
 <span style="color: #555555;">4</span> hp    -<span style="color: #BB0000;">321.</span>    102. <span style="text-decoration: underline;">6</span>721.    <span style="color: #BB0000;">NA</span>
 </code></pre>
 </div>
+</section></section>
+<section id="experiments" class="title-slide slide level2 center">
+<h2>Experiments</h2>
+<p>Now that we have arbitrary function support, what function should we use?</p>
+<ul>
+<li>Ideally something that didn’t have the limitations of correlation:
+<ul>
+<li>Could handle category-numeric and category-category comparisons.</li>
+<li>Could detect non-linear relationships.</li>
+<li>Still easy to calculate.</li>
+</ul></li>
+</ul>
+</section>
+
+<section id="experiments-2" class="title-slide slide level2 center">
+<h2>Experiments (2)</h2>
+<p>I am not the first person to think of this:</p>
+<p><img data-src="pp-article-medium.png"> - Implemented in Python. Uses random forest model to determine how good one column is at predicting another.</p>
+</section>
+
+<section>
+<section id="experiments-3" class="title-slide slide level2 center">
+<h2>Experiments (3)</h2>
+<p>I have ported it to R as a (highly experimental) package:</p>
+<div style="font-size: 0.7em;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># install.packages("devtools")</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"jameslairdsmith/ppcalc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li>There is currently a single function, <code>ppcalc_randomforest()</code></li>
+<li>Values close to 1 mean one variable is very good at predicting another. Values close to 0 mean a variable is very poor at predicting another.</li>
+</ul>
+</section>
+<section id="experiments-4" class="slide level3">
+<h3>Experiments (4)</h3>
+<div style="font-size: 0.7em;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">colpair_map</span>(ppcalc<span class="sc">::</span>ppcalc_randforest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="fansi fansi-output"><code><span style="color: #555555;"># A tibble: 5 × 6</span>
+  term         Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #555555;">1</span> Sepal.Length       <span style="color: #BB0000;">NA</span>           0.206        0.673       0.588   0.521
+<span style="color: #555555;">2</span> Sepal.Width         0.142      <span style="color: #BB0000;">NA</span>            0.271       0.236   0.218
+<span style="color: #555555;">3</span> Petal.Length        0.670       0.356       <span style="color: #BB0000;">NA</span>           0.818   0.907
+<span style="color: #555555;">4</span> Petal.Width         0.497       0.354        0.826      <span style="color: #BB0000;">NA</span>       0.920
+<span style="color: #555555;">5</span> Species             0.419       0.208        0.787       0.758  <span style="color: #BB0000;">NA</span>    
+</code></pre>
+</div>
+</div>
+<p>Now we can look at the categorical column “Species”, which isn’t possible with correlation.</p>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank you!</h1>
+<p>Questions?</p>
 <div class="footer footer-default">
 
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
