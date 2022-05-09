@@ -28,7 +28,6 @@ Link to slides: data-exploration-corrr.jameslairdsmith.com/
 ```{r}
 library(corrr)
 library(magrittr)
-library(dplyr)
 ```
 
 ## Agenda
@@ -37,8 +36,6 @@ library(dplyr)
 - New hotness: `corrr::correlate()`
 - More general hotness: `corrr::colpair_map()`
 - Experiments: `ppcalc::`
-
-
 
 ### In the beginning ... there was `stats::cor()` {auto-animate="true"}
 
@@ -80,7 +77,6 @@ correlate(mtcars[1:4])
 
 ### Using `corrr::correlate()` {auto-animate="true"}
 
-
 ```{r}
 correlate(mtcars[1:4]) %>%
   network_plot()
@@ -110,7 +106,7 @@ correlate(mtcars[1:4]) %>%
   dplyr::arrange(r)
 ```
 
-### Limitations of `corrr::colpair_map()`
+### Limitations of `corrr::corrrelate()`
 
 - Trivially, it only works with correlations.
   - This means it's confined to only numeric-numeric comparisons.
