@@ -21,8 +21,9 @@ old.hooks <- fansi::set_knit_hooks(knitr::knit_hooks)
 options(crayon.enabled=TRUE)
 ```
 
-::: {style="margin-top: 2em; margin-bottom: 1em"}
-Link to slides: data-exploration-corrr.jameslairdsmith.com/ 
+::: {style="margin-top: 2em; margin-bottom: 1em; font-size: 0.75em;"}
+- Link to slides: [data-exploration-corrr.jameslairdsmith.com/](https://data-exploration-corrr.jameslairdsmith.com/)
+- Repo for talk: [jameslairdsmith/talk-advanced-data-exploration-corrr](https://github.com/jameslairdsmith/talk-advanced-data-exploration-corrr)
 :::
 
 ```{r}
@@ -142,6 +143,15 @@ mtcars[1:4] %>%
   shave()
 ```
 
+### Application: covariance matrix {auto-animate="true"}
+
+```{r}
+mtcars[1:4] %>% 
+  colpair_map(stats::cov) %>% 
+  shave() %>% 
+  stretch(na.rm = TRUE)
+```
+
 ## Experiments
 
 Now that we have arbitrary function support, what function should we use?
@@ -162,7 +172,7 @@ I am not the first person to think of this:
 
 I have ported it to R as a (highly experimental) package:
 
-:::{style="font-size: 0.7em;"}
+:::{style="font-size: 0.9em;"}
 ```{r}
 #| eval: false
 # install.packages("devtools")
@@ -170,10 +180,20 @@ devtools::install_github("jameslairdsmith/ppcalc")
 ```
 :::
 
+. . . 
+
 - There is currently a single function, `ppcalc_randomforest()`
 - Values close to 1 mean one variable is very good at predicting another. Values close to 0 mean a variable is very poor at predicting another.
 
-### Experiments (4)
+### Experiments (4) {auto-animate="true"}
+
+:::{style="font-size: 0.7em;"}
+```{r}
+iris 
+```
+:::
+
+### Experiments (4) {auto-animate="true"}
 
 :::{style="font-size: 0.7em;"}
 ```{r}
@@ -182,7 +202,9 @@ iris %>%
 ```
 :::
 
-Now we can look at the categorical column "Species", which isn't possible with correlation.
+:::{style="margin-top: 1.5em"}
+Now we can look at the relationships categorical column "Species", which isn't possible with correlation.
+:::
 
 # Thank you! 
 
